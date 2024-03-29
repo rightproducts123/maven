@@ -1,0 +1,45 @@
+pipeline
+{
+    agent any
+    stages
+    {
+        stage(CountinuesDownload)
+        {
+            steps
+            {
+                git 'httpsgithub.comintelliqittrainingsmaven.git'
+            }
+        }
+        stage(CountinuesBuild)
+        {
+            steps
+            {
+                sh 'mvn package'
+            }
+        }
+        stage(CountinuesDeployment)
+        {
+            steps
+            {
+                deploy adapters [tomcat9(credentialsId 'de5b75d5-fc2a-422f-93f6-dba63d78763e', path '', url 'http172.31.46.838080')], contextPath 'test1', war '.war'
+            }
+        }
+        stage(CountinuesTesting)
+        {
+            steps
+            {
+                git 'httpsgithub.comintelliqittrainingsFunctionalTesting.git'
+                sh 'java -jar varlibjenkinsworkspacedeclarativetesting.jar'
+            }
+        }
+        stage(CountinuesDelivery)
+        {
+            steps
+            {
+                input message 'This need to approved by Project Manager', submitter 'k'
+                
+                deploy adapters [tomcat9(credentialsId 'de5b75d5-fc2a-422f-93f6-dba63d78763e', path '', url 'http172.31.42.2328080')], contextPath 'prod1', war '.war'
+            }
+        }
+    }
+}
