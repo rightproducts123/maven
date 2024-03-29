@@ -28,7 +28,7 @@ pipeline
         {
             steps
             {
-                git 'httpsgithub.comintelliqittrainings/FunctionalTesting.git'
+                git 'https://github.com/intelliqittrainings/FunctionalTesting.git'
                 sh 'java -jar var/lib/jenkins/workspace/declarative/testing.jar'
             }
         }
