@@ -3,28 +3,28 @@ pipeline
     agent any
     stages
     {
-        stage(CountinuesDownload)
+        stage("CountinuesDownload")
         {
             steps
             {
                 git 'httpsgithub.comintelliqittrainingsmaven.git'
             }
         }
-        stage(CountinuesBuild)
+        stage("CountinuesBuild")
         {
             steps
             {
                 sh 'mvn package'
             }
         }
-        stage(CountinuesDeployment)
+        stage("CountinuesDeployment")
         {
             steps
             {
-                deploy adapters [tomcat9(credentialsId 'de5b75d5-fc2a-422f-93f6-dba63d78763e', path '', url 'http172.31.46.838080')], contextPath 'test1', war '.war'
+                deploy adapters: [tomcat9(credentialsId: 'de5b75d5-fc2a-422f-93f6-dba63d78763e', path: '', url: 'http://172.31.46.83:8080')], contextPath: 'test1', war: '**/*.war'
             }
         }
-        stage(CountinuesTesting)
+        stage("CountinuesTesting")
         {
             steps
             {
@@ -38,7 +38,7 @@ pipeline
             {
 
                 
-                deploy adapters [tomcat9(credentialsId 'de5b75d5-fc2a-422f-93f6-dba63d78763e', path '', url 'http172.31.42.2328080')], contextPath 'prod1', war '.war'
+                deploy adapters: [tomcat9(credentialsId: 'de5b75d5-fc2a-422f-93f6-dba63d78763e', path: '', url: 'http://172.31.42.232:8080')], contextPath: 'test1', war: '**/*.war'
             }
         }
     }
