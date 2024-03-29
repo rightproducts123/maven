@@ -7,7 +7,7 @@ pipeline
         {
             steps
             {
-                git 'httpsgithub.comintelliqittrainingsmaven.git'
+                git 'httpsgithub.com/intelliqittrainings/maven.git'
             }
         }
         stage("CountinuesBuild")
@@ -28,11 +28,11 @@ pipeline
         {
             steps
             {
-                git 'httpsgithub.comintelliqittrainingsFunctionalTesting.git'
-                sh 'java -jar varlibjenkinsworkspacedeclarativetesting.jar'
+                git 'httpsgithub.comintelliqittrainings/FunctionalTesting.git'
+                sh 'java -jar var/lib/jenkins/workspace/declarative/testing.jar'
             }
         }
-        stage(CountinuesDelivery)
+        stage("CountinuesDelivery")
         {
             steps
             {
