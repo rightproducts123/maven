@@ -4,7 +4,7 @@ pipeline
     agent any
     stages
     {
-        stage('contDownload_Loans')
+        stage('contDownload')
         {
             steps
             {
@@ -14,15 +14,5 @@ pipeline
                 }
             }
         }
-        stage('contBuild')
-        {
-            steps
-            {
-                script
-                {
-                    cicd.mavenBuild()
-                }
-            }
-        }
-      }
-}      
+        
+}     
